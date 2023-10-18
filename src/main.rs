@@ -1,11 +1,13 @@
 mod bird;
+mod obstacle;
 
 use bevy::prelude::*;
 
 fn main() {
     App::new()
         .add_plugins(DefaultPlugins.set(ImagePlugin::default_nearest()))
-        .add_plugins(bird::BirdPlugins)
+        .add_plugins(bird::BirdPlugin)
+        .add_plugins(obstacle::ObstaclePlugin)
         .add_systems(Startup, init)
         .run();
 }

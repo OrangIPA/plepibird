@@ -16,9 +16,9 @@ struct Moveable {
     flap: FlapDirection,
 }
 
-pub struct BirdPlugins;
+pub struct BirdPlugin;
 
-impl Plugin for BirdPlugins {
+impl Plugin for BirdPlugin {
     fn build(&self, app: &mut App) {
         app.add_systems(Startup, spawn_bird).add_systems(Update, move_entity);
     }
