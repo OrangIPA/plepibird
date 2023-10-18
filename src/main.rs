@@ -1,6 +1,8 @@
 mod bird;
 mod obstacle;
 
+pub const SCALE: f32 = 2.;
+
 use bevy::prelude::*;
 
 fn main() {

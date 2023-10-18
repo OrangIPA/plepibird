@@ -1,5 +1,7 @@
 use bevy::prelude::*;
 
+use crate::SCALE;
+
 const PRESSED_VELOCITY: f32 = 300.;
 const ACCELERATION_CONSTANT: f32 = 0.001;
 const MAX_VELOCITY: f32 = 500.;
@@ -30,7 +32,7 @@ fn spawn_bird(mut commands: Commands, asset_server: Res<AssetServer>) {
         SpriteBundle {
             texture: asset_server.load("berd.png"),
             transform: Transform::from_translation(Vec3::new(0., 0., 0.))
-                .with_scale(Vec3::new(2., 2., 2.)),
+                .with_scale(Vec3::new(SCALE, SCALE, SCALE)),
             ..Default::default()
         },
         Moveable {
