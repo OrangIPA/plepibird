@@ -24,8 +24,7 @@ impl Default for TriggerSpawnState {
     }
 }
 
-fn event_trigger(time: Res<Time>, mut state: ResMut<TriggerSpawnState>) {
-    if state.event_timer.tick(time.delta()).finished() {
-        
-    }
+fn event_trigger(time: Res<Time>, mut state: ResMut<TriggerSpawnState>, mut commands: Commands) {
+    if !state.event_timer.tick(time.delta()).finished() {return;}
+    // commands.spawn(bundle)
 }
