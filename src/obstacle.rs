@@ -1,6 +1,6 @@
 use bevy::prelude::*;
 
-const OBS_SPEED: f32 = 100.;
+const OBS_SPEED: f32 = 140.;
 
 use crate::SCALE;
 
@@ -24,7 +24,7 @@ struct TriggerSpawnState {
 impl Default for TriggerSpawnState {
     fn default() -> Self {
         TriggerSpawnState {
-            event_timer: Timer::from_seconds(3., TimerMode::Repeating),
+            event_timer: Timer::from_seconds(4., TimerMode::Repeating),
         }
     }
 }
@@ -41,7 +41,7 @@ fn event_trigger(
     commands.spawn((
         SpriteBundle {
             texture: asset_server.load("pipo.png"),
-            transform: Transform::from_translation(Vec3::new(600., 0., 0.))
+            transform: Transform::from_translation(Vec3::new(700., 0., 0.))
                 .with_scale(Vec3::splat(SCALE)),
             ..Default::default()
         },
