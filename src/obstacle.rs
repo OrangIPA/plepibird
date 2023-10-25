@@ -1,6 +1,9 @@
 use bevy::prelude::*;
 
 const OBS_SPEED: f32 = 140.;
+const PIPE_HEIGHT: f32 = 256.;
+const HOLE_HEIGHT_RANGE: f32 = 400.;
+const GAP: f32 = 50.;
 
 use crate::SCALE;
 
@@ -38,10 +41,23 @@ fn event_trigger(
     if !state.event_timer.tick(time.delta()).finished() {
         return;
     }
+
+    let pipe_gap = (PIPE_HEIGHT * SCALE) / 2. + GAP;
+    let h = (rand::random::<f32>() - 0.5) * HOLE_HEIGHT_RANGE;
+
     commands.spawn((
         SpriteBundle {
             texture: asset_server.load("pipo.png"),
-            transform: Transform::from_translation(Vec3::new(700., 0., 0.))
+            transform: Transform::from_translation(Vec3::new(700., h + pipe_gap, 0.))
+                .with_scale(Vec3::splat(SCALE)),
+            ..Default::default()
+        },
+        Obstacle,
+    ));
+    commands.spawn((
+        SpriteBundle {
+            texture: asset_server.load("pipo.png"),
+            transform: Transform::from_translation(Vec3::new(700., h - pipe_gap, 0.))
                 .with_scale(Vec3::splat(SCALE)),
             ..Default::default()
         },

@@ -1,11 +1,11 @@
-use core::ops;
 use bevy::prelude::*;
+use core::ops;
 
 use crate::{SCALE, WIN_HEIGHT, WIN_WIDTH};
 
-const PRESSED_VELOCITY: f32 = 300.;
+const PRESSED_VELOCITY: f32 = 400.;
 const VELOCITY_CONSTANT: f32 = 0.001;
-const MAX_VELOCITY: f32 = 500.;
+const MAX_VELOCITY: f32 = 700.;
 
 pub struct BirdPlugin;
 
@@ -63,9 +63,7 @@ fn move_entity(
 ) {
     let mut berd = q.single_mut();
 
-    if key.just_pressed(KeyCode::Space)
-        || (mouse.just_pressed(MouseButton::Left) && !mouse.just_pressed(MouseButton::Right))
-    {
+    if key.just_pressed(KeyCode::Space) || mouse.just_pressed(MouseButton::Left) {
         berd.1.vel = PRESSED_VELOCITY;
         berd.1.flap = !berd.1.flap.clone();
     }
