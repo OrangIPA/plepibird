@@ -6,6 +6,15 @@ const PRESSED_VELOCITY: f32 = 300.;
 const ACCELERATION_CONSTANT: f32 = 0.001;
 const MAX_VELOCITY: f32 = 500.;
 
+pub struct BirdPlugin;
+
+impl Plugin for BirdPlugin {
+    fn build(&self, app: &mut App) {
+        app.add_systems(Startup, spawn_bird)
+            .add_systems(Update, move_entity);
+    }
+}
+
 enum FlapDirection {
     Vertical,
     Horizontal,
@@ -16,15 +25,6 @@ struct Bird {
     v_vel: f32,
     h_vel: f32,
     flap: FlapDirection,
-}
-
-pub struct BirdPlugin;
-
-impl Plugin for BirdPlugin {
-    fn build(&self, app: &mut App) {
-        app.add_systems(Startup, spawn_bird)
-            .add_systems(Update, move_entity);
-    }
 }
 
 fn spawn_bird(mut commands: Commands, asset_server: Res<AssetServer>) {
