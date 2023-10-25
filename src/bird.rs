@@ -12,7 +12,7 @@ enum FlapDirection {
 }
 
 #[derive(Component)]
-struct Moveable {
+struct Bird {
     v_vel: f32,
     h_vel: f32,
     flap: FlapDirection,
@@ -36,7 +36,7 @@ fn spawn_bird(mut commands: Commands, asset_server: Res<AssetServer>) {
                 .with_scale(Vec3::new(SCALE, SCALE, SCALE)),
             ..Default::default()
         },
-        Moveable {
+        Bird {
             v_vel: 0.,
             h_vel: 0.,
             flap: FlapDirection::Vertical,
@@ -45,7 +45,7 @@ fn spawn_bird(mut commands: Commands, asset_server: Res<AssetServer>) {
 }
 
 fn move_entity(
-    mut q: Query<(&mut Transform, &mut Moveable)>,
+    mut q: Query<(&mut Transform, &mut Bird)>,
     t: Res<Time>,
     key: Res<Input<KeyCode>>,
     mouse: Res<Input<MouseButton>>,
